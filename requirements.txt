@@ -1,0 +1,6 @@
+# Maggie Simulator - Python dependencies
+# This project is a frontend HTML/CSS/JavaScript project,
+# so no Python packages are required.
+
+# If you run it using a simple local server, Python's built-in
+# HTTP server is sufficient and does not need to be installed.
