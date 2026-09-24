@@ -1,0 +1,1372 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    color: #3b2415;
+
+    /* DREAMY BACKGROUND */
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(255, 220, 240, 0.7), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(210, 235, 255, 0.7), transparent 30%),
+        linear-gradient(135deg, #ffdff1, #dff5ff, #fff2d5);
+
+    background-size: 200% 200%;
+    animation: universeBackground 15s ease infinite;
+
+    overflow-x: hidden;
+}
+
+
+@keyframes universeBackground {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* =========================
+   DREAMY FLOATING ELEMENTS
+   ========================= */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    opacity: 0.35;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+body::before {
+    background: #f7b6d8;
+
+    top: -100px;
+    left: -100px;
+
+    animation: floatingGlow 8s ease-in-out infinite;
+}
+
+
+body::after {
+    background: #a9ddff;
+
+    bottom: -100px;
+    right: -100px;
+
+    animation: floatingGlow 10s ease-in-out infinite reverse;
+}
+
+
+@keyframes floatingGlow {
+
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(50px, -30px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+
+}
+
+
+/* =========================
+   MAIN GAME
+   ========================= */
+
+.game {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+header {
+    text-align: center;
+
+    padding: 30px 20px 15px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+header h1 {
+    font-size: 42px;
+
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 3px 10px rgba(255, 255, 255, 0.8);
+}
+
+
+header p {
+    font-size: 16px;
+
+    opacity: 0.7;
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+main {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================
+   KITCHEN AREA
+   ========================= */
+
+.kitchen {
+    position: relative;
+
+    width: 650px;
+    height: 430px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================
+   COUNTER
+   ========================= */
+
+.counter {
+    position: absolute;
+
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 600px;
+    height: 230px;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    border: 2px solid rgba(255, 255, 255, 0.6);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 20px 50px rgba(120, 100, 150, 0.15);
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   BOWL
+========================================================= */
+
+.bowl-zone {
+    position: absolute;
+
+    left: 50%;
+    top: 44%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width: 280px;
+    height: 200px;
+}
+
+/* =========================================================
+   BRIGHT GLOSSY MAGGI BOWL
+========================================================= */
+
+.bowl {
+    position: absolute;
+    bottom: 0;
+    left: 2%;
+
+    width: 96%;
+    height: 150px;
+
+    /* Bright Maggi yellow */
+    background:
+        linear-gradient(
+            90deg,
+            #d99b00 0%,
+            #f5c515 8%,
+            #ffd92f 20%,
+            #ffe54a 50%,
+            #ffd126 78%,
+            #e5a600 100%
+        );
+
+    border-radius:
+        0 0 48% 48% /
+        0 0 35% 35%;
+
+    box-shadow:
+        0 20px 32px rgba(75,45,0,.35),
+        inset 10px 0 18px rgba(255,240,100,.35),
+        inset -12px 0 20px rgba(130,75,0,.22),
+        inset 0 -22px 25px rgba(130,75,0,.20);
+
+    overflow: hidden;
+
+    transform: perspective(500px) rotateX(-2deg);
+}
+
+
+/* =========================================================
+   GLOSSY BODY REFLECTION
+========================================================= */
+
+.bowl::before {
+    content: "";
+
+    position: absolute;
+
+    top: 48px;
+    left: 7%;
+
+    width: 24%;
+    height: 75px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0),
+            rgba(255,255,255,.72),
+            rgba(255,255,255,0)
+        );
+
+    transform: rotate(-12deg);
+
+    filter: blur(4px);
+
+    opacity: .75;
+
+    z-index: 7;
+}
+
+
+/* =========================================================
+   RED MAGGI-STYLE BAND
+========================================================= */
+
+.bowl::after {
+    content: "";
+
+    position: absolute;
+
+    left: -2%;
+    top: 56px;
+
+    width: 104%;
+    height: 17px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ff5140 0%,
+            #ef3021 45%,
+            #c91b13 100%
+        );
+
+    box-shadow:
+        0 3px 5px rgba(100,20,0,.3);
+
+    transform: perspective(300px) rotateX(-8deg);
+
+    z-index: 6;
+}
+
+
+/* =========================================================
+   THICK YELLOW TOP LIP
+========================================================= */
+
+.bowl-rim {
+    position: absolute;
+
+    top: -18px;
+    left: -5%;
+
+    width: 110%;
+    height: 82px;
+
+    border-radius: 50%;
+
+    /*
+       Outer yellow plastic rim
+    */
+    background:
+        radial-gradient(
+            ellipse at center,
+
+            #6b4300 0%,
+            #8f5b00 8%,
+
+            #3e2800 20%,
+            #573700 25%,
+
+            #ffd92f 42%,
+            #ffe75a 55%,
+
+            #ffc91c 72%,
+            #e09b00 88%,
+            #b87500 100%
+        );
+
+    box-shadow:
+        inset 0 5px 10px rgba(255,255,180,.8),
+        inset 0 -10px 14px rgba(100,55,0,.35),
+        0 4px 9px rgba(70,40,0,.3);
+
+    z-index: 8;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   INNER BOWL SURFACE
+========================================================= */
+
+.bowl-rim::after {
+    content: "";
+
+    position: absolute;
+
+    left: 12%;
+    top: 18%;
+
+    width: 76%;
+    height: 64%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,225,65,.08) 0%,
+            rgba(255,210,30,.05) 45%,
+            rgba(60,35,0,.25) 100%
+        );
+
+    box-shadow:
+        inset 0 4px 8px rgba(0,0,0,.18);
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   YELLOW BOWL RIM
+========================================================= */
+
+.bowl-rim {
+    position: absolute;
+
+    top: -13px;
+    left: -4%;
+
+    width: 108%;
+    height: 74px;
+
+    /*
+       Yellow outer rim with transparent centre,
+       so the noodles remain visible.
+    */
+    background:
+        radial-gradient(
+            ellipse at center,
+
+            transparent 0%,
+            transparent 52%,
+
+            #fff36a 53%,
+            #ffdf32 64%,
+
+            #f2bd13 78%,
+            #c88d08 100%
+        );
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset 0 -8px 12px rgba(130,80,0,.22),
+        inset 0 4px 7px rgba(255,255,180,.65),
+        0 3px 8px rgba(80,50,0,.22);
+
+    z-index: 8;
+
+    pointer-events: none;
+}
+
+
+/* water */
+
+.water-fill {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(140,210,240,.55),
+            rgba(120,190,225,.75)
+        );
+
+    transition:
+        height 1.1s ease;
+
+    z-index: 1;
+}
+
+
+/* =========================
+   WATER
+   ========================= */
+
+#water {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 0;
+
+    background: rgba(120, 210, 240, 0.65);
+
+    transition: height 1s;
+}
+
+
+/* =========================
+   MASALA
+   ========================= */
+
+#masala {
+    position: absolute;
+
+    width: 80px;
+    height: 30px;
+
+    background: #d97b3f;
+
+    border-radius: 50%;
+
+    left: 100px;
+    top: 40px;
+
+    opacity: 0;
+
+    transition: 0.5s;
+}
+
+
+/* =========================
+   PACKET
+   ========================= */
+
+.packet {
+    position: absolute;
+
+    left: 40px;
+    bottom: 65px;
+
+    width: 120px;
+    height: 160px;
+
+    background: #e85c7a;
+
+    color: white;
+
+    border-radius: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 45px;
+
+    box-shadow:
+        0 10px 20px rgba(160, 70, 100, 0.2);
+
+    transition: 0.5s;
+}
+
+
+.packet span {
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   SPOON
+   ========================= */
+
+.spoon {
+    position: absolute;
+
+    right: 60px;
+    bottom: 70px;
+
+    font-size: 70px;
+
+    transform: rotate(-20deg);
+
+    transition: 0.5s;
+
+    filter: drop-shadow(
+        0 5px 5px rgba(80, 70, 100, 0.15)
+    );
+}
+
+
+
+/* =========================================================
+   DYNAMIC REALISTIC STEAM
+========================================================= */
+
+.steam {
+    position: absolute;
+
+    top: -55px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 170px;
+    height: 125px;
+
+    z-index: 20;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    font-size: 0;
+}
+
+
+/* ---------------------------------------------------------
+   WAVY STEAM WISPS
+--------------------------------------------------------- */
+
+.steam::before,
+.steam::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 12px;
+    height: 100px;
+
+    border-left: 7px solid rgba(255, 255, 255, 0.55);
+
+    border-radius: 50%;
+
+    filter: blur(2px);
+
+    transform-origin: bottom center;
+
+    opacity: 0;
+}
+
+
+/* ---------------------------------------------------------
+   LEFT WISP
+--------------------------------------------------------- */
+
+.steam::before {
+    left: 42px;
+
+    animation:
+        steamLeft
+        2.4s
+        ease-in-out
+        infinite;
+}
+
+
+/* ---------------------------------------------------------
+   RIGHT WISP
+--------------------------------------------------------- */
+
+.steam::after {
+    right: 42px;
+
+    animation:
+        steamRight
+        2.7s
+        ease-in-out
+        infinite .45s;
+}
+
+
+/* ---------------------------------------------------------
+   STEAM ACTIVE WHILE BOILING
+--------------------------------------------------------- */
+
+.cook-area.boiling .steam {
+    opacity: 1;
+
+    animation:
+        steamBreathing
+        2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================================
+   LEFT WAVY STEAM
+========================================================= */
+
+@keyframes steamLeft {
+
+    0% {
+        transform:
+            translate(0, 10px)
+            scale(.65)
+            rotate(-10deg);
+
+        opacity: 0;
+    }
+
+    12% {
+        opacity: .75;
+    }
+
+    25% {
+        transform:
+            translate(-8px, -12px)
+            scale(.8)
+            rotate(8deg);
+
+        opacity: .7;
+    }
+
+    40% {
+        transform:
+            translate(8px, -28px)
+            scale(.9)
+            rotate(-10deg);
+
+        opacity: .62;
+    }
+
+    55% {
+        transform:
+            translate(-7px, -46px)
+            scale(1)
+            rotate(9deg);
+
+        opacity: .5;
+    }
+
+    70% {
+        transform:
+            translate(9px, -65px)
+            scale(1.08)
+            rotate(-8deg);
+
+        opacity: .35;
+    }
+
+    85% {
+        transform:
+            translate(-5px, -82px)
+            scale(1.18)
+            rotate(7deg);
+
+        opacity: .18;
+    }
+
+    100% {
+        transform:
+            translate(6px, -105px)
+            scale(1.3)
+            rotate(-6deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   RIGHT WAVY STEAM
+========================================================= */
+
+@keyframes steamRight {
+
+    0% {
+        transform:
+            translate(0, 8px)
+            scale(.6)
+            rotate(9deg);
+
+        opacity: 0;
+    }
+
+    12% {
+        opacity: .7;
+    }
+
+    27% {
+        transform:
+            translate(8px, -13px)
+            scale(.78)
+            rotate(-9deg);
+
+        opacity: .65;
+    }
+
+    42% {
+        transform:
+            translate(-8px, -30px)
+            scale(.9)
+            rotate(10deg);
+
+        opacity: .58;
+    }
+
+    58% {
+        transform:
+            translate(7px, -49px)
+            scale(1)
+            rotate(-9deg);
+
+        opacity: .45;
+    }
+
+    73% {
+        transform:
+            translate(-9px, -68px)
+            scale(1.1)
+            rotate(8deg);
+
+        opacity: .3;
+    }
+
+    87% {
+        transform:
+            translate(5px, -86px)
+            scale(1.2)
+            rotate(-7deg);
+
+        opacity: .15;
+    }
+
+    100% {
+        transform:
+            translate(-6px, -110px)
+            scale(1.32)
+            rotate(6deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   SUBTLE OVERALL MOVEMENT
+========================================================= */
+
+@keyframes steamBreathing {
+
+    0%, 100% {
+        transform:
+            translateX(-50%)
+            scaleX(.96);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            scaleX(1.04);
+    }
+
+}
+
+
+/* =========================================================
+   STEAM ANIMATION
+========================================================= */
+
+@keyframes steamLeft {
+
+    0% {
+        transform:
+            translateY(10px)
+            translateX(0)
+            scale(.65)
+            rotate(-8deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .65;
+    }
+
+    40% {
+        transform:
+            translateY(-20px)
+            translateX(-12px)
+            scale(.9)
+            rotate(5deg);
+
+        opacity: .55;
+    }
+
+    70% {
+        transform:
+            translateY(-50px)
+            translateX(10px)
+            scale(1.15)
+            rotate(-6deg);
+
+        opacity: .28;
+    }
+
+    100% {
+        transform:
+            translateY(-82px)
+            translateX(-5px)
+            scale(1.4)
+            rotate(8deg);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes steamRight {
+
+    0% {
+        transform:
+            translateY(8px)
+            translateX(0)
+            scale(.6)
+            rotate(8deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .6;
+    }
+
+    45% {
+        transform:
+            translateY(-25px)
+            translateX(13px)
+            scale(.95)
+            rotate(-5deg);
+
+        opacity: .5;
+    }
+
+    72% {
+        transform:
+            translateY(-58px)
+            translateX(-8px)
+            scale(1.2)
+            rotate(7deg);
+
+        opacity: .25;
+    }
+
+    100% {
+        transform:
+            translateY(-90px)
+            translateX(6px)
+            scale(1.45)
+            rotate(-7deg);
+
+        opacity: 0;
+    }
+}
+
+/* =========================
+   CONTROLS
+   ========================= */
+
+.controls {
+    width: 600px;
+
+    text-align: center;
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 15px 40px rgba(100, 80, 130, 0.12);
+}
+
+
+.progress {
+    margin-bottom: 20px;
+}
+
+
+#stepNumber {
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+.progress-bar {
+    width: 100%;
+
+    height: 8px;
+
+    background: rgba(255, 255, 255, 0.6);
+
+    border-radius: 10px;
+
+    margin-top: 8px;
+
+    overflow: hidden;
+}
+
+
+#progress {
+    height: 100%;
+
+    width: 0%;
+
+    background: #e85c7a;
+
+    transition: width 0.5s;
+}
+
+
+.controls h2 {
+    font-size: 25px;
+
+    margin-bottom: 8px;
+}
+
+
+.controls p {
+    opacity: 0.7;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   BUTTON
+   ========================= */
+
+#actionButton {
+    background: #e85c7a;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px 35px;
+
+    border-radius: 15px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #c34463;
+
+    transition: 0.15s;
+}
+
+
+#actionButton:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 0 #c34463;
+}
+
+
+#actionButton:active {
+    transform: translateY(3px);
+
+    box-shadow:
+        0 3px 0 #c34463;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    text-align: center;
+
+    padding: 20px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+.restart {
+    border: none;
+
+    background: rgba(255, 255, 255, 0.4);
+
+    padding: 8px 15px;
+
+    border-radius: 10px;
+
+    color: #7d624a;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   STIRRING
+   ========================= */
+
+.stirring {
+    animation: stir 0.5s infinite alternate;
+}
+
+
+@keyframes stir {
+
+    from {
+        transform: rotate(-20deg);
+    }
+
+    to {
+        transform: rotate(25deg);
+    }
+
+}
+
+
+/* =========================
+   FLOATING UNIVERSE PARTICLES
+   ========================= */
+
+body::marker {
+    display: none;
+}
+
+/* =========================================
+   MAGGIE UNIVERSE FLOATING ELEMENTS
+   ========================================= */
+
+.universe-bg {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* CLOUDS */
+
+.cloud {
+    position: absolute;
+    font-size: 55px;
+    opacity: 0.35;
+    filter: blur(1px);
+    animation: cloudFloat 12s ease-in-out infinite;
+}
+
+.cloud1 {
+    top: 12%;
+    left: 5%;
+    animation-duration: 14s;
+}
+
+.cloud2 {
+    top: 25%;
+    right: 7%;
+    font-size: 70px;
+    animation-duration: 18s;
+    animation-delay: -5s;
+}
+
+.cloud3 {
+    bottom: 18%;
+    left: 12%;
+    font-size: 45px;
+    animation-duration: 16s;
+    animation-delay: -8s;
+}
+
+@keyframes cloudFloat {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(35px, -20px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+
+/* FLOATING NOODLES */
+
+.floating-noodle {
+    position: absolute;
+    font-size: 70px;
+    color: #e8a72d;
+    opacity: 0.3;
+    font-weight: bold;
+    animation: noodleFloat 7s ease-in-out infinite;
+}
+
+.noodle1 {
+    top: 18%;
+    left: 20%;
+    transform: rotate(20deg);
+}
+
+.noodle2 {
+    top: 65%;
+    right: 17%;
+    transform: rotate(-30deg);
+    animation-delay: -3s;
+}
+
+.noodle3 {
+    bottom: 8%;
+    left: 42%;
+    font-size: 50px;
+    animation-delay: -5s;
+}
+
+@keyframes noodleFloat {
+    0% {
+        transform: translateY(0) rotate(15deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(-15deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(15deg);
+    }
+}
+
+
+/* WATER DROPLETS */
+
+.droplet {
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.45;
+    animation: dropletFloat 5s ease-in-out infinite;
+}
+
+.drop1 {
+    top: 35%;
+    left: 12%;
+}
+
+.drop2 {
+    top: 55%;
+    right: 10%;
+    animation-delay: -2s;
+}
+
+.drop3 {
+    bottom: 25%;
+    right: 28%;
+    animation-delay: -4s;
+}
+
+@keyframes dropletFloat {
+    0% {
+        transform: translateY(0);
+        opacity: 0.25;
+    }
+
+    50% {
+        transform: translateY(-20px);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 0.25;
+    }
+}
+
+
+/* SPARKLES */
+
+.sparkle {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.5;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+.sparkle1 {
+    top: 15%;
+    right: 25%;
+}
+
+.sparkle2 {
+    top: 40%;
+    left: 8%;
+    animation-delay: -1s;
+}
+
+.sparkle3 {
+    bottom: 20%;
+    right: 8%;
+    animation-delay: -2s;
+}
+
+.sparkle4 {
+    bottom: 30%;
+    left: 25%;
+    animation-delay: -1.5s;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(0.6) rotate(0deg);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: scale(1.2) rotate(90deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0.6) rotate(180deg);
+        opacity: 0.2;
+    }
+}
+
+
+/* FLOATING SPOONS */
+
+.floating-spoon {
+    position: absolute;
+    font-size: 38px;
+    opacity: 0.2;
+    animation: spoonFloat 10s linear infinite;
+}
+
+.spoon1 {
+    top: 10%;
+    right: 40%;
+}
+
+.spoon2 {
+    bottom: 15%;
+    left: 8%;
+    animation-delay: -5s;
+}
+
+@keyframes spoonFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-35px) rotate(180deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+
+/* KEEP THE ACTUAL GAME ABOVE THE BACKGROUND */
+
+.game {
+    z-index: 2;
+}
